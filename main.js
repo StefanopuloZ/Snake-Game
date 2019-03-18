@@ -7,7 +7,9 @@ let timeCounter = 0;
 let startTime = new Date();
 let paused = true;
 let table = [];
+let directionKeys = {right: 'left', left: 'right', up: 'down', down: 'up'};
 let currentDirection = 'right';
+let oppositeDirection = directionKeys[currentDirection];
 let config = {
     tileColor: '#ccc',
     snakeColor: '#f33',
@@ -30,7 +32,7 @@ document.getElementById("submit-yo").addEventListener("click", function (event) 
         config.tableWidth = parseInt(document.querySelector('input[name="table-size"]:checked').value);
         config.tableHeight = parseInt(document.querySelector('input[name="table-size"]:checked').value);
         alert("Changes accepted.");
-    } else alert("Not a valid speed number!");      
+    } else alert("Not a valid speed number!");
 });
 
 if (JSON.parse(localStorage.getItem("HighScore")) !== null) {
@@ -158,33 +160,31 @@ function createSnake() {
 function snakeControls(event) {
     if (!paused && event.key === "p") {
         paused = true;
-    } else if (event.key === "ArrowLeft" && checkValidDirection(currentDirection, "left")) {
+    };
+    
+    
+    
+    if (event.key === "ArrowLeft" && checkValidDirection("left")) {
         currentDirection = "left";
         paused = false;
-    } else if (event.key === "ArrowRight" && checkValidDirection(currentDirection, "right")) {
+    } else if (event.key === "ArrowRight" && checkValidDirection("right")) {
         currentDirection = "right";
         paused = false;
-    } else if (event.key === "ArrowUp" && checkValidDirection(currentDirection, "up")) {
+    } else if (event.key === "ArrowUp" && checkValidDirection("up")) {
         currentDirection = "up";
         paused = false;
-    } else if (event.key === "ArrowDown" && checkValidDirection(currentDirection, "down")) {
+    } else if (event.key === "ArrowDown" && checkValidDirection("down")) {
         currentDirection = "down";
         paused = false;
     };
 };
 
-function checkValidDirection(previousDirection, newDirection) {
-    if (previousDirection === "up" && newDirection === "down") {
+function checkValidDirection(newDirection) {
+    if (newDirection === oppositeDirection) {
         return false;
-    } else if (previousDirection === "down" && newDirection === "up") {
-        return false;
-    } else if (previousDirection === "left" && newDirection === "right") {
-        return false;
-    } else if (previousDirection === "right" && newDirection === "left") {
-        return false;
-    } else {
-        return true;
     };
+
+    return true;
 };
 
 function findPositionOfHead() {
@@ -236,6 +236,8 @@ function moveSnake(direction) {
         table[x + 1][y].snake = 1;
         table[x + 1][y].head = 1;
     };
+
+    oppositeDirection = directionKeys[direction];
 
     table[x][y].head = 0;
 
