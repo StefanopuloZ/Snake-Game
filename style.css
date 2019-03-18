@@ -1,0 +1,91 @@
+* {
+    text-align: center;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+    border: solid black 2px;
+    margin: auto;
+}
+
+td {
+    border: solid black 0px;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    vertical-align: bottom;
+}
+
+.pray {
+    background-color: red;
+}
+
+.snake {
+    background-color: green;
+}
+
+.head {
+    background-color: darkgreen;
+}
+
+.blank {
+    background-color: lightcyan;
+}
+
+#main {
+    display: flex;
+    flex-flow: column;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+}
+
+ul li {
+    margin: 0 15px;
+    list-style: none;
+}
+
+ul button {
+    width: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(116, 116, 116, 0.541);
+}
+
+#hide-high-score-btn {
+    position: relative;
+    left: 190px;
+}
+
+#high-score table {
+    border: solid 2px black;
+    background-color: rgb(71, 9, 9);
+    color: white;
+}
+
+fieldset {
+    background-color: rgb(155, 155, 155);
+}
+
+#high-score table td {
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+}
