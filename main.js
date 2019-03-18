@@ -64,7 +64,6 @@ function createTable(width, height) {
         for (let j = 0; j < height; j++) {
             table[i].push({
                 pray: 0,
-                empty: 0,
                 snake: 0,
                 head: 0,
                 obstacle: 0,
@@ -267,14 +266,12 @@ function eatPray(tile) {
 
 function createPray(prayType) {
     let i = 0;
-    let test = 0;
     let prayX = 0;
     let prayY = 0;
 
     while (i < 1) {
         prayX = randomNumber((config.tableWidth - 1), 0);
         prayY = randomNumber((config.tableHeight - 1), 0);
-        ++test;
 
         if (table[prayX][prayY].snake === 0 && table[prayX][prayY].pray === 0) {
             table[prayX][prayY].pray = prayType;
