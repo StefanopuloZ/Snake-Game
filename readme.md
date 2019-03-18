@@ -6,14 +6,14 @@ Simple snake game we all know and love done using Javascript. This is one of my 
 
 Features:
 
-- Three size levels. 6x6, 9x9 and 12x12
+- Three level sizes: 6x6, 9x9 and 12x12
 - 9 dynamicaly changing speed levels
     - Starting speed and level size are customizable from options before game start
-- All standard rules for snake movment, growth and proper randomization of pray appearence
+- All standard rules for snake movment, growth and proper randomization of pray appearence apply
 - Functional pause option
 - Highscore
 
-## Code
+## Logic and Code
 
 Snake is moving through grid where each square is object with properties telling program what it contains.
 
@@ -24,7 +24,7 @@ Snake is moving through grid where each square is object with properties telling
 
 Value of 0 is none, while other values indicate something is there.
 
-Program is following position of head separatley as it is the only one that can eat pray and run into obstacles be it and of the area or its own body. Each body part is kept as a value from 1 moving upwards. When head of the snake moves, new tile gets filled with a value of 1, last one gets deleted and all the rest get their value increased by 1. That is, if the move is valid, if it is not, appropriate alert appeares. When snake has eaten pray, same thing is done with the exeption of the last snake body tile, that does not get deleted as snake has gained in size.
+Each grid tile has x,y coordinates. Program is following position of head separatley as it is the only one that can eat pray and run into obstacles be it and of the area or its own body. Each body part is kept as a value from 1 moving upwards. When head of the snake moves, new tile gets filled with a value of 1, last one gets deleted and all the rest get their value increased by 1. That is, if the move is valid, if it is not, appropriate alert appeares. When snake has eaten pray, same thing is done with the exeption of the last snake body tile, that does not get deleted as snake has gained in size.
 
 Method for finding head of the snake in a table:
 
@@ -51,7 +51,7 @@ Calculation for snake movment:
         table[x][y - 1].head = 1;
     };
 
-Here we are moving snake in the left direction and checking obstacles with checkObstacles method which will end game automatically if there is invalid move.
+Here we are moving snake in the left direction and checking obstacles with checkObstacles method which will end game automatically if there is invalid move or increase snake size if pray has been eaten.
 
 ## Tehnologies
 
