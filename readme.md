@@ -55,6 +55,6 @@ Here we are moving snake in the left direction and checking obstacles with check
 
 ## Tehnologies
 
-All logic is in .js file using pure javascript. Beside simple css and html nothing else worth nothing has been used here.
+All logic is in .js file using pure javascript. No back end here. Highscore is kept using Locale Storage. Beside simple css and html nothing else worth nothing has been used here.
 
 ### Created by Stefan Deak
