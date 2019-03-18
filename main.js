@@ -1,32 +1,33 @@
-let testSpeed = 0;
-let prayEaten = false;
-let score = 0;
-let time = 0;
-let minutes = 0;
-let timeCounter = 0;
-let startTime = new Date();
-let paused = true;
-let table = [];
-let directionKeys = {right: 'left', left: 'right', up: 'down', down: 'up'};
-let currentDirection = 'right';
-let oppositeDirection = directionKeys[currentDirection];
-let config = {
+let testSpeed = 0,
+prayEaten = false,
+score = 0,
+time = 0,
+minutes = 0,
+timeCounter = 0,
+startTime = new Date(),
+paused = true,
+table = [],
+directionKeys = {right: 'left', left: 'right', up: 'down', down: 'up'},
+currentDirection = 'right',
+oppositeDirection = directionKeys[currentDirection],
+config = {
     tileColor: '#ccc',
     snakeColor: '#f33',
     prayColor: '#f33',
     tableWidth: 6,
     tableHeight: 6,
     snakeLength: 3,
-    speed: 500
-};
-let snakeGameLength = config.snakeLength;
-let snakeMove;
-let highScore = [];
+    speed: 400
+},
+snakeGameLength = config.snakeLength,
+snakeMove,
+highScore = [];
 
 document.getElementById("start-game-btn").addEventListener("click", startGame);
-document.getElementById("submit-yo").addEventListener("click", function (event) {
+document.getElementById("submit-btn").addEventListener("click", function (event) {
     event.preventDefault();
     testSpeed = document.getElementById("snake-speed").value;
+
     if (testSpeed > 0 && testSpeed < 10) {
         config.speed = (10 - testSpeed) * 100;
         config.tableWidth = parseInt(document.querySelector('input[name="table-size"]:checked').value);
@@ -60,7 +61,6 @@ document.getElementById("hide-high-score-btn").addEventListener("click", functio
 function createTable(width, height) {
     for (let i = 0; i < width; i++) {
         table.push([]);
-
         for (let j = 0; j < height; j++) {
             table[i].push({
                 pray: 0,
@@ -162,19 +162,10 @@ function snakeControls(event) {
         paused = true;
     };
     
-    
-    
-    if (event.key === "ArrowLeft" && checkValidDirection("left")) {
-        currentDirection = "left";
-        paused = false;
-    } else if (event.key === "ArrowRight" && checkValidDirection("right")) {
-        currentDirection = "right";
-        paused = false;
-    } else if (event.key === "ArrowUp" && checkValidDirection("up")) {
-        currentDirection = "up";
-        paused = false;
-    } else if (event.key === "ArrowDown" && checkValidDirection("down")) {
-        currentDirection = "down";
+    let keys = {ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down'};
+
+    if (keys[event.key] && checkValidDirection(keys[event.key])) {
+        currentDirection = keys[event.key];
         paused = false;
     };
 };
@@ -211,6 +202,7 @@ function findSnakeBodyPosition() {
             };
         };
     };
+
     return bodyPosition;
 };
 
